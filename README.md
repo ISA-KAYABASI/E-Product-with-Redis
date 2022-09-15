@@ -7,3 +7,7 @@ Meantime I am still working on the project to complete for rest of the desired p
 I send the project with rar and after I complete I will send it back second time with everything completed.
 Thank you for your time and consideration.
 
+For to use application it needs to connect with  database and needs to add update application.properties options ==>
+
+spring.datasource.username=root
+spring.datasource.password=root
