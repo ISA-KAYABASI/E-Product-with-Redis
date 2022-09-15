@@ -10,7 +10,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firs_name", nullable = false)
+    @Column(name = "product_name", nullable = false)
     private String productName;
     @Column(name = "expiration_date")
     private String expirationDate;
