@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Student Managment System</title>
+  <title>Product Managment System</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 </head>
@@ -12,51 +12,50 @@
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="#">Student Managment System</a>
+    <a class="navbar-brand" th:href="@{/products}">Product Managment System</a>
 
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/students}">Student Managment</a>
-            </li>
-
-        </ul>
-    </div>
 </nav>
 
 <br>
 
-
 <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-        <h1 class="text-center">Create New Student</h1>
+        <h1 class="text-center">Create New Product</h1>
         <div class="card-body">
-          <form th:action="@{/students}" th:object = "${student}" method="POST">
-                 <div class="form-group">
-                    <label>Student First Name </label>
+          <form th:action="@{/products}" th:object = "${product}" method="POST">
 
-                    <input type="text" name="firstName" th:field = "*{firstName}"
-                        class="form-control" placeholder="Enter Student First Name"/>
+
+                 <div class="form-group">
+                    <label>Product Name </label>
+                    <input type="text" name="productName" field = "*{productName}"
+                        class="form-control" placeholder="Enter Product Name" required/>
                  </div>
 
                  <div class="form-group">
-                       <label>Student Last Name </label>
-                     <input type="text" name="lastName" th:field = "*{lastName}"
-                        class="form-control" placeholder="Enter Student Last Name"/>
+                       <label>Expiration Date </label>
+                     <input type="date" name="expirationDate" field = "*{expirationDate}"
+                        class="form-control" placeholder="Enter Expiration Date"required/>
                  </div>
 
                  <div class="form-group">
-                       <label>Student Email </label>
-                    <input type="text" name="email" th:field = "*{email}"
-                         class="form-control" placeholder="Enter Student email"/>
+                      <label>Price </label>
+                      <input type="number" name="price" field = "*{price}"
+                             class="form-control" placeholder="Enter Price"required/>
                  </div>
+
+                 <div class="form-group">
+                       <label>Money Currency</label>
+                    <input type="text" name="moneyCurrency" field = "*{moneyCurrency}"
+                         class="form-control" placeholder="Enter Money Currency"required/>
+                 </div>
+
+                  <div class="form-check form-switch" >
+                      <input type="checkbox"  class="form-check-input" role="switch" id="active" th:name="active"  th:checked="${product.isActive()}" />
+                      <p>Product is state</p>
+                  </div>
+
 
               <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>

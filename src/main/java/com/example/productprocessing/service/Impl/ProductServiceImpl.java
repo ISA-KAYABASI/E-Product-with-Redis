@@ -1,46 +1,36 @@
 package com.example.productprocessing.service.Impl;
 
-
-
-import com.example.productprocessing.entity.Student;
-import com.example.productprocessing.repository.StudentRepository;
-import com.example.productprocessing.service.StudentService;
+import com.example.productprocessing.entity.Product;
+import com.example.productprocessing.repository.ProductRepository;
+import com.example.productprocessing.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class ProductServiceImpl implements ProductService {
 
-    private StudentRepository studentRepository;
+    private ProductRepository productRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         super();
-        this.studentRepository = studentRepository;
+        this.productRepository = productRepository;
+    }
+    @Override
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
     }
 
     @Override
-    public List<Student> getAllStudent() {
-        return studentRepository.findAll();
-    }
-
-
-    @Override
-    public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
-    public Student getStudentById(Long id) {
-        return studentRepository.findById(id).get();
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).get();
     }
 
-    @Override
-    public Student updateStudent(Student student) {
-        return studentRepository.save(student);
-    }
 
-    @Override
-    public void deleteStudentById(Long id) {
-        studentRepository.deleteById(id);}
+
 }

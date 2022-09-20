@@ -1,17 +1,16 @@
 package com.example.productprocessing.service;
 
 
-import com.example.productprocessing.entity.Student;
+import com.example.productprocessing.entity.Product;
 
 import java.util.List;
 
-public interface StudentService {
-    List<Student> getAllStudent();
+public interface ProductService {
+    List<Product> getAllProduct();
 
-    Student saveStudent(Student student);
+    Product saveProduct(Product product);
 
-    Student getStudentById(Long id);
-    Student updateStudent(Student student);
+    Product getProductById(Long id);
 
-    void deleteStudentById(Long id);
+
 }
