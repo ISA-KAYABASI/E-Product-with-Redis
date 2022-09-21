@@ -45,16 +45,13 @@ public class RedisController {
         productNew.setPrice(existCacheProduct.getPrice());
         productNew.setMoneyCurrency(existCacheProduct.getMoneyCurrency());
         productNew.setActive(existCacheProduct.isActive());
-
         productService.saveProduct(productNew);
         productDao.deleteProduct(id);
-
-         return "Product sent to database.";
+        return "Product sent to database.";
     }
 
     @DeleteMapping("/{id}")
     public String remove(@PathVariable Long id)   {
         return productDao.deleteProduct(id);
     }
-
 }
