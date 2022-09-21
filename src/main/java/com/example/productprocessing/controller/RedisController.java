@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/productCache")
 public class RedisController {
 
-
+    @Autowired
     private ProductService productService;
     private final ProductCacheRepository productDao;
 
@@ -37,7 +37,7 @@ public class RedisController {
 
     @PostMapping("/sendDB/{id}")
     public Product sendProductToDb(@PathVariable String id) {
-        ProductCache existCacheProduct = findProduct(id);
+        ProductCache existCacheProduct = productDao.findProductById(id);
         Product productNew = new Product();
         productNew.setId(1L);
         productNew.setProductName(existCacheProduct.getProductName());

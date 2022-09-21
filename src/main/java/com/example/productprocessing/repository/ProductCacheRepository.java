@@ -15,7 +15,7 @@ public class ProductCacheRepository {
     private RedisTemplate template;
     public ProductCache save(ProductCache productCache){
         template.opsForHash().put(HASH_KEY,productCache.getId(),productCache);
-        template.expire(HASH_KEY,30, TimeUnit.SECONDS);
+        template.expire(HASH_KEY,600, TimeUnit.SECONDS);
         return productCache;
     }
     public List<ProductCache> findAll(){

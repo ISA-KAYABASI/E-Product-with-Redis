@@ -26,9 +26,5 @@ public class Product {
     @Column(name = "activeOrPassive")
     private boolean active;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "created_time")
-    private Date datecreated;
-
 
 }

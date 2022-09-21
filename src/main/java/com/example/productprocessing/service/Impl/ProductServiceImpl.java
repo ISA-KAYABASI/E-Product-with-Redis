@@ -18,7 +18,6 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
-
     @Override
     public List<Product> getAllProduct() {
         return productRepository.findAll();
