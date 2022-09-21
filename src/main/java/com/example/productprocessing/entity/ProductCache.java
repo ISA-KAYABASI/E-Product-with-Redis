@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class ProductCache implements Serializable {
 
     @Id
-    private String id;
+    private Long id;
     private String productName;
     private String expirationDate;
     private Double price;

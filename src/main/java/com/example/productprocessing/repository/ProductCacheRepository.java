@@ -22,10 +22,10 @@ public class ProductCacheRepository {
         return template.opsForHash().values(HASH_KEY);
     }
 
-    public ProductCache findProductById(String id){
+    public ProductCache findProductById(Long id){
         return (ProductCache) template.opsForHash().get(HASH_KEY,id);
     }
-    public String deleteProduct(String id){
+    public String deleteProduct(Long id){
         template.opsForHash().delete(HASH_KEY,id);
         return "product removed from temporary memory !!";
     }

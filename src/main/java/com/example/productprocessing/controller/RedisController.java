@@ -31,27 +31,29 @@ public class RedisController {
     }
 
     @GetMapping("/{id}")
-    public ProductCache findProduct(@PathVariable String id) {
+    public ProductCache findProduct(@PathVariable Long id) {
         return productDao.findProductById(id);
     }
 
     @PostMapping("/sendDB/{id}")
-    public Product sendProductToDb(@PathVariable String id) {
+    public String sendProductToDb(@PathVariable Long id) {
         ProductCache existCacheProduct = productDao.findProductById(id);
         Product productNew = new Product();
-        productNew.setId(1L);
+        productNew.setId(existCacheProduct.getId());
         productNew.setProductName(existCacheProduct.getProductName());
         productNew.setExpirationDate(existCacheProduct.getExpirationDate());
         productNew.setPrice(existCacheProduct.getPrice());
         productNew.setMoneyCurrency(existCacheProduct.getMoneyCurrency());
         productNew.setActive(existCacheProduct.isActive());
 
-        return productService.saveProduct(productNew);
-//         productDao.deleteProduct(id);
+        productService.saveProduct(productNew);
+        productDao.deleteProduct(id);
+
+         return "Product sent to database.";
     }
 
     @DeleteMapping("/{id}")
-    public String remove(@PathVariable String id)   {
+    public String remove(@PathVariable Long id)   {
         return productDao.deleteProduct(id);
     }
 
