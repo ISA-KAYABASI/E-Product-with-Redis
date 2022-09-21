@@ -13,8 +13,6 @@ import java.io.Serializable;
 @RedisHash("ProductCache")
 public class ProductCache implements Serializable {
 
-    private static final long serialVersionUID = -7571092848898680939L;
-
     @Id
     private String id;
     private String productName;
@@ -22,5 +20,7 @@ public class ProductCache implements Serializable {
     private Double price;
     private String moneyCurrency;
     private boolean active;
+
+
 
 }

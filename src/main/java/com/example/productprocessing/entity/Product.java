@@ -14,7 +14,7 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private  Long  id ;
     @Column(name = "product_name", nullable = false)
     private String productName;
     @Column(name = "expiration_date")
