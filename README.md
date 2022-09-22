@@ -78,4 +78,4 @@ You can remove products from cache memory by using :
 
     localhost:8080/productCache/remove/{enter id number}
 
-And products will get deleted from cache memor after sending to the database.
+And products will get deleted from cache memor after sending to the database. If nobody touch the product in cache memory product wil get deleted after 40 minutes.
