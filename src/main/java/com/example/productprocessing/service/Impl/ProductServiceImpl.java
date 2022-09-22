@@ -1,7 +1,6 @@
 package com.example.productprocessing.service.Impl;
 
 import com.example.productprocessing.entity.Product;
-import com.example.productprocessing.entity.ProductCache;
 import com.example.productprocessing.repository.ProductRepository;
 import com.example.productprocessing.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -32,5 +31,16 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(Long id) {
         return productRepository.findById(id).get();
     }
+
+    @Override
+    public List<Product> getProductName(String productName) {
+        return productRepository.findByProductName(productName);
+    }
+
+    @Override
+    public List<Product> getActives(boolean active) {
+        return productRepository.findByActive(active);
+    }
+
 
 }

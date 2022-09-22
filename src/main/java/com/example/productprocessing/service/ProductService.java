@@ -2,7 +2,6 @@ package com.example.productprocessing.service;
 
 
 import com.example.productprocessing.entity.Product;
-import com.example.productprocessing.entity.ProductCache;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface ProductService {
 
     Product getProductById(Long id);
 
+    List<Product> getProductName(String productName);
 
-
-
+    List<Product> getActives(boolean active);
 }

@@ -12,15 +12,15 @@ import java.util.List;
 @RequestMapping("/productCache")
 public class RedisController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
     private final ProductCacheRepository productDao;
 
-    public RedisController(ProductCacheRepository productDao) {
+    public RedisController(ProductCacheRepository productDao, ProductService productService) {
         this.productDao = productDao;
+        this.productService = productService;
     }
 
-    @PostMapping("/new")
+    @PostMapping("/save")
     public ProductCache save(@RequestBody ProductCache productCache) {
         return productDao.save(productCache);
     }
@@ -30,7 +30,7 @@ public class RedisController {
         return productDao.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ProductCache findProduct(@PathVariable Long id) {
         return productDao.findProductById(id);
     }
@@ -47,11 +47,11 @@ public class RedisController {
         productNew.setActive(existCacheProduct.isActive());
         productService.saveProduct(productNew);
         productDao.deleteProduct(id);
-        return "Product sent to database.";
+        return "Product has been sent to database.";
     }
 
-    @DeleteMapping("/{id}")
-    public String remove(@PathVariable Long id)   {
+    @DeleteMapping("/remove/{id}")
+    public String remove(@PathVariable Long id) {
         return productDao.deleteProduct(id);
     }
 }

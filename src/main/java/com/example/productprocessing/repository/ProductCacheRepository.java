@@ -1,7 +1,6 @@
 package com.example.productprocessing.repository;
 
 import com.example.productprocessing.entity.ProductCache;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -11,11 +10,15 @@ import java.util.concurrent.TimeUnit;
 public class ProductCacheRepository {
 
     public static final String HASH_KEY = "ProductCache";
-    @Autowired
-    private RedisTemplate template;
+    private final RedisTemplate template;
+
+    public ProductCacheRepository(RedisTemplate template) {
+        this.template = template;
+    }
+
     public ProductCache save(ProductCache productCache){
         template.opsForHash().put(HASH_KEY,productCache.getId(),productCache);
-        template.expire(HASH_KEY,600, TimeUnit.SECONDS);
+        template.expire(HASH_KEY,40, TimeUnit.MINUTES);
         return productCache;
     }
     public List<ProductCache> findAll(){

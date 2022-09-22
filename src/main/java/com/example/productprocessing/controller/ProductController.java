@@ -2,15 +2,13 @@ package com.example.productprocessing.controller;
 
 import com.example.productprocessing.entity.Product;
 import com.example.productprocessing.service.ProductService;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 
-@Controller
+@RestController
+@RequestMapping("/products")
 public class ProductController {
 
     private ProductService productService;
@@ -21,42 +19,51 @@ public class ProductController {
     }
 
     //handler method to handle list products and view and return
-    @GetMapping("/products")
-    public String listProducts(Model model){
-        model.addAttribute("products", productService.getAllProduct());
-        return "products";
+    @GetMapping
+    public List<Product> listProducts(){
+        return productService.getAllProduct();
+
     }
 
-    //This method is called for open product create form
-    @GetMapping("/products/new")
-    public String createProductForm(Model model){
-        Product product = new Product();
-        model.addAttribute("product", product);
-        return "create_product";
-    }
+//    //This method is called for open product create form
+//    @GetMapping("/products/new")
+//    public String createProductForm(Model model){
+//        Product product = new Product();
+//        model.addAttribute("product", product);
+//        return "create_product";
+//    }
 
-    @PostMapping("/products")
-    public String saveProduct(@ModelAttribute("product") Product product){
+    @PostMapping("/save")
+    public String saveProduct(@RequestBody Product product){
         try {
             productService.saveProduct(product);
         } catch (Exception e) {
-            return "redirect:/products?error";
+            return "Saving error please try again.";
         }
-        return "redirect:/products?success";
+        return "Saving success.";
     }
 
 
-    @PostMapping("/products/{id}")
+    @PostMapping("/update/{id}")
     public String updateProducts(@PathVariable Long id,
-        @ModelAttribute("product") Product product, Model model ){
+        @RequestBody Product product, Model model ){
 
         // get product from database by id
         Product existingProduct = productService.getProductById(id);
         existingProduct.setActive(!existingProduct.isActive());
         //save updated product object
         productService.saveProduct(existingProduct);
-        return "redirect:/products";
+        return "Product active passive state updated successfully";
+    }
 
+    @GetMapping("/name/{productName}")
+    public List<Product>  getProductName(@PathVariable String productName) {
+        return productService.getProductName(productName);
+    }
+
+    @GetMapping("/active/{active}")
+    public List<Product> getActives(@PathVariable("active")boolean active) {
+        return productService.getActives(active);
     }
 
 
