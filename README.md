@@ -73,6 +73,9 @@ You can send data from cache memory to database by using :
 
     localhost:8080/productCache/sendDB/{enter id number}
 
+
 You can remove products from cache memory by using :
 
     localhost:8080/productCache/remove/{enter id number}
+
+And products will get deleted from cache memor after sending to the database.
