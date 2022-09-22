@@ -1,11 +1,11 @@
 # ProductProcessing
-I create a project which is able to control adding product and existing product state.
+I create a CRUD REDIS REST project.
 
-I create this CRUD project, we are able to add new products with productname, expiration date, price, currency and it is have the active passive state.
-All this information filling a add another product to product list that we can see on ==>  
-http://localhost:8080/products ' port.
-Meantime I am still working on the project to complete for rest of the desired parts.
-I send the project with rar and after I complete I will send it back second time with everything completed.
+I create this Redis CRUD Rest project, we are able to add new products with product name, expiration date, price, currency, active passive state.
+All this information stored into the database, and we can view on the  products list.
+Meantime also we can use cache memory to create new products as a draft and we can use some of the crud actions on it. If we want we can send this
+draft to the database list to use it there. If we don't use draft for 40 minutes draft will be automatically deleted from cache memory.
+I send the project with rar.
 Thank you for your time and consideration.
 
 For to use application it needs to connect with  database and needs to add update application.properties options ==>
